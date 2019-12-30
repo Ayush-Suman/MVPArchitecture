@@ -31,8 +31,6 @@ class rAdapter(var context: Context):RecyclerView.Adapter<rAdapter.rViewHolder>(
 
     fun setdata(datalist: List<DataTable>) {
         data =datalist
-        d("a", data[0].earth_date)
-        d("a", data[0].img_src)
     }
 
     inner class rViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
