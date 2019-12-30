@@ -1,0 +1,40 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "f267317c1c5bdf42c0ec4a1cbd4953d7",
+    "entities": [
+      {
+        "tableName": "ImageData",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`img_src` TEXT NOT NULL, `earth_date` TEXT, PRIMARY KEY(`img_src`))",
+        "fields": [
+          {
+            "fieldPath": "img_src",
+            "columnName": "img_src",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "earth_date",
+            "columnName": "earth_date",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "img_src"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f267317c1c5bdf42c0ec4a1cbd4953d7')"
+    ]
+  }
+}
