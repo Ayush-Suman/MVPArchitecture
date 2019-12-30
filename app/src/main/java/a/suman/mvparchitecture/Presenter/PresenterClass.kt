@@ -9,8 +9,8 @@ class PresenterClass(view:contract.View): contract.Presenter {
     var repository:Repository= Repository(this@PresenterClass)
     var view=view
 
-    override fun fetchData(datalist:List<DataTable>){
-        view.update(datalist)
+    override fun fetchData(datalist:List<DataTable>, state:String){
+        view.update(datalist, state)
     }
     override fun transferData(sol:Int, context: Context) {
         repository.getData(sol, context)

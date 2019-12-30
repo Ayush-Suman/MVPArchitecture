@@ -6,12 +6,12 @@ import android.provider.ContactsContract
 
 interface contract{
     interface View{
-        fun update(datalist: List<DataTable>)
+        fun update(datalist: List<DataTable>, state:String)
     }
 
     interface Presenter{
         fun transferData(sol:Int, context: Context)
-        fun fetchData(datalist:List<DataTable>)
+        fun fetchData(datalist:List<DataTable>, state:String)
     }
 
     interface Model{

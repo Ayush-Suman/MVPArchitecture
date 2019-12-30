@@ -12,6 +12,7 @@ import a.suman.mvparchitecture.Repository.Model.Database
 import a.suman.mvparchitecture.Repository.Network.Datatable2Net
 import android.os.AsyncTask
 import android.util.Log.d
+import android.widget.Toast
 
 class Repository(presenterClass: PresenterClass): contract.Model {
     var presenterClass=presenterClass
@@ -23,30 +24,26 @@ class Repository(presenterClass: PresenterClass): contract.Model {
     override fun getData(sol: Int, context: Context) {
         var database=Database.getDatabase(context)
 
-        d("a", "getData executed")
         retrofitBuilder.networkMethods.getResult(sol)
             .enqueue(object : Callback<Datatable2Net> {
                 override fun onFailure(call: Call<Datatable2Net>, t: Throwable) {
-                    d("a", "onFailure executed")
                     AsyncTask.execute{
                         responseTable=database.dao().SelectAll()
-                        presenterClass.fetchData(responseTable)}
+                        presenterClass.fetchData(responseTable, "Failed")}
                 }
 
                 override fun onResponse(
                     call: Call<Datatable2Net>,
                     response: Response<Datatable2Net>
                 ) {
-                    d("a", "onResponse executed")
+
                     responseData=response.body()!!
                     responseTable=responseData.photos
-                    d("a", "onResponse executed")
                     AsyncTask.execute{
-                        d("a", "Async executed")
                     database.dao().DeleteAll()
                     database.dao().insertAll(responseTable)
                     responseTable=database.dao().SelectAll()
-                    presenterClass.fetchData(responseTable)}
+                    presenterClass.fetchData(responseTable, "Success")}
                 }
             }
             )

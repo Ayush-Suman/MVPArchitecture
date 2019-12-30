@@ -7,6 +7,7 @@ import a.suman.mvparchitecture.Repository.Model.DataTable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log.d
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,10 +20,11 @@ class MainActivity : AppCompatActivity(),contract.View{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var recyclerView=RecyclerView(this)
+        var recyclerView=findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager=LinearLayoutManager(this)
         recyclerView.adapter=rAdapter
         button.setOnClickListener {
+            progressBar.visibility= View.VISIBLE
             var sol=1
             if(editText.text.isEmpty()) {
                 Toast.makeText(this, "Searching for default sol 1", Toast.LENGTH_LONG).show()
@@ -37,8 +39,14 @@ class MainActivity : AppCompatActivity(),contract.View{
 
     }
 
-    override fun update(datalist:List<DataTable>) {
+    override fun update(datalist:List<DataTable>, state:String) {
+
         rAdapter.setdata(datalist)
+        this@MainActivity.runOnUiThread{
+            progressBar.visibility=View.GONE
+            if(state=="Failed"){Toast.makeText(this@MainActivity, "Fetching data from local storage", Toast.LENGTH_LONG).show()}
+            else {Toast.makeText(this@MainActivity, "Data loaded from network", Toast.LENGTH_LONG).show()}
+            rAdapter.notifyDataSetChanged()}
     }
 
 }

@@ -10,18 +10,18 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:maxHeight="400dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:listitem="@layout/recyclerview"
-        android:maxHeight="400dp"/>
+        tools:listitem="@layout/recyclerview" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:gravity="center"
-        android:padding="5dp"
+        android:padding="10dp"
         android:text="Enter sol to get corresponding images"
         android:textColor="#000"
         android:textSize="16sp"
@@ -30,7 +30,7 @@
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="50dp"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="1"
@@ -50,4 +50,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/recyclerView" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

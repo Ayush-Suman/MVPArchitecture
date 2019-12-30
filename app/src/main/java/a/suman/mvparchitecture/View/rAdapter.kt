@@ -1,6 +1,5 @@
 package a.suman.mvparchitecture.View
 
-import a.suman.mvparchitecture.Contract.contract
 import a.suman.mvparchitecture.R
 import a.suman.mvparchitecture.Repository.Model.DataTable
 import android.content.Context
@@ -14,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 class rAdapter(var context: Context):RecyclerView.Adapter<rAdapter.rViewHolder>(){
-    var data:List<DataTable> =emptyList()
+    var data:List<DataTable> = emptyList()
     override fun getItemCount(): Int {
         return data.size
     }
@@ -33,7 +32,7 @@ class rAdapter(var context: Context):RecyclerView.Adapter<rAdapter.rViewHolder>(
     fun setdata(datalist: List<DataTable>) {
         data =datalist
         d("a", data[0].earth_date)
-        notifyDataSetChanged()
+        d("a", data[0].img_src)
     }
 
     inner class rViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
